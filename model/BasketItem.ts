@@ -8,4 +8,9 @@ export class BasketItem {
     this.product = product;
     this.quantity = quantity;
   }
+
+  public priceItem(): number {
+    let total = this.product.price * this.quantity;
+    return parseFloat(total.toFixed(2))
+  }
 }
