@@ -4,14 +4,18 @@ import { PepsiSixPack } from "./model/products/PepsiSixPack";
 
 const basket = Basket.empty();
 const milk = new Milk();
-
-basket.addProduct(milk, 2);
-milk.price = -1.0;
-basket.addProduct(milk, 1);
-
 const pepsiSixPack = new PepsiSixPack();
 
+basket.addProduct(milk, 2);
+basket.addProduct(milk, 2);
+
+
 basket.addProduct(pepsiSixPack, 1);
+basket.addProduct(pepsiSixPack, 3);
+basket.print();
+
+basket.removeItem(milk.upc)
+basket.removeProduct(pepsiSixPack, 1)
 basket.print();
 
 // - Capacidad de verificar si dos productos son los mismos
