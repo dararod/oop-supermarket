@@ -8,7 +8,7 @@ export const Header = () => {
         <h1 className="text-2xl text-white">
           OOP Supermarket
         </h1>
-        <div className="bg-red-700 text-white py-1 px-3 rounded">
+        <div className="bg-red-700 text-white py-1 px-3 rounded font-semibold">
           <span>${basket.totalBasket()}</span>
         </div>
       </header>

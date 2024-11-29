@@ -1,11 +1,13 @@
 import type { IProduct } from "./IProduct";
 
 export abstract class Product implements IProduct {
+  private _imageUrl: string;
   private _name: string;
   private _price: number;
   private _upc: string;
 
-  constructor(name: string, price: number, upc: string) {
+  constructor(name: string, price: number, upc: string, imageUrl: string) {
+    this._imageUrl = imageUrl
     this._name = name;
     this._price = price;
     this._upc = upc
@@ -21,6 +23,10 @@ export abstract class Product implements IProduct {
 
   get upc(): string {
     return this._upc;
+  }
+
+  get imageUrl(): string {
+    return this._imageUrl
   }
 
   set price(price: number) {
