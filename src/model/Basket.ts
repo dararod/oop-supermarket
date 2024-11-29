@@ -1,5 +1,6 @@
 import { BasketItem } from "./BasketItem";
-import { IProduct } from "./products/IProduct";
+
+import type { IProduct } from "./products/IProduct";
 
 export class Basket {
   public discount: number;
