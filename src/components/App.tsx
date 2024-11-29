@@ -1,7 +1,16 @@
+import { Header } from "./Header";
+import { Product } from "./Product";
+
 export const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-        Hello world!
-    </h1>
+    <main>
+      <Header />
+      <section className="p-4">
+        <Product 
+          price={5.99}
+          name="Milk"
+        />
+      </section>
+    </main>
   );
 };

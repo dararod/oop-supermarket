@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 
 import { App } from '../src/components/App';
 
-test('renders hello world h1', () => {
+test('renders header title', () => {
   render(<App />);
-  const h1El = screen.getByText(/Hello World/i);
+  const h1El = screen.getByText(/OOP Supermarket/i);
   expect(h1El).toBeInTheDocument();
 });

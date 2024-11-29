@@ -1,4 +1,4 @@
-import { IProduct } from "./products/IProduct";
+import type { IProduct } from "./products/IProduct";
 
 export class BasketItem {
   public product: IProduct;

@@ -1,4 +1,4 @@
-import { IProduct } from "./IProduct";
+import type { IProduct } from "./IProduct";
 
 export abstract class Product implements IProduct {
   private _name: string;
