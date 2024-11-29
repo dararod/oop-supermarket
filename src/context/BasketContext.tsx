@@ -1,7 +1,8 @@
 import { createContext, useState } from 'react';
 
-import type { BasketItem } from '../model/BasketItem';
 import { Basket } from '../model/Basket';
+
+import type { BasketItem } from '../model/BasketItem';
 
 export type BasketContextValue = {
     basket: Basket;
