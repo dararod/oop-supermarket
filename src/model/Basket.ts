@@ -101,4 +101,8 @@ export class Basket {
     );
     console.info("The total amount for your purchase is " + this.totalBasket())
   }
+
+  public clone(): Basket {
+    return new Basket([...this.items], this.discount);
+  }
 }
