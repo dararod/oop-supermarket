@@ -1,5 +1,4 @@
 import { useBasket } from "../hooks/use-basket";
-import ShoppingCart from '~icons/custom/shopping-cart';
 
 export const Header = () => {
   const { basket } = useBasket();
@@ -8,9 +7,11 @@ export const Header = () => {
       <a href="/">
         <h1 className="text-2xl text-white">OOP Supermarket</h1>
       </a>
+      <div className="flex items-center gap-2">
+        <a href="/basket" className="text-white font-semibold">Carrito</a>
       <div className="bg-red-700 text-white py-1 px-3 rounded font-semibold">
-        <ShoppingCart />
         <span>${basket.totalBasket()}</span>
+      </div>
       </div>
     </header>
   );
