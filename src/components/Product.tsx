@@ -1,5 +1,4 @@
 import { useBasket } from "../hooks/use-basket";
-
 import { BasketItem } from "../model/BasketItem";
 
 import type { IProduct } from "../model/products/IProduct";
