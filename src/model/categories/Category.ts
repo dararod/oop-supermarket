@@ -1,4 +1,4 @@
-export class Categories {
+export class Category {
     private _name: string;
     private _description: string;
     private _slug: string;
