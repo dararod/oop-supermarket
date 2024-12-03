@@ -1,3 +1,4 @@
+import { BasketItem } from "../BasketItem";
 import type { IProduct } from "./IProduct";
 
 export abstract class Product implements IProduct {
@@ -33,6 +34,10 @@ export abstract class Product implements IProduct {
     if (price > 0) {
       this._price = price;
     }
+  }
+
+  intoBasketItem(quantity: number): BasketItem {
+    return new BasketItem(this, quantity);
   }
 
   toString(): string {
