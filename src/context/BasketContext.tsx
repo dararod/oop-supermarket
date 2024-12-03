@@ -11,13 +11,20 @@ export type BasketContextValue = {
 
 export const BasketContext = createContext<BasketContextValue>({} as BasketContextValue);
 
+function loadLocalBasketOrDefault(): Basket {
+    const json = localStorage.getItem('basket');
+    return json ? Basket.deserialize(json) : Basket.empty();
+}
+
 export function BasketContextProvider(props: { children: JSX.Element }): JSX.Element {
-    const [basket, setBasket] = useState(Basket.empty());
+    const [basket, setBasket] = useState(loadLocalBasketOrDefault());
 
     const addToBasket = (bi: BasketItem) => {
         const next = basket.clone();
         next.addItem(bi);
         setBasket(next);
+
+        localStorage.setItem('basket', next.serialize());
     }
 
     return (

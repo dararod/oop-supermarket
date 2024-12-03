@@ -1,10 +1,10 @@
 import { BasketItem } from "./BasketItem";
 import { Bread } from "./products/Bread";
 
-import type { IProduct } from "./products/IProduct";
 import { Milk } from "./products/Milk";
 import { PepsiSixPack } from "./products/PepsiSixPack";
 
+import type { IProduct } from "./products/IProduct";
 export class Basket {
   public discount: number;
   public items: BasketItem[];
