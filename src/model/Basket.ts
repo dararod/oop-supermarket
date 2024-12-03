@@ -1,6 +1,9 @@
 import { BasketItem } from "./BasketItem";
+import { Bread } from "./products/Bread";
 
 import type { IProduct } from "./products/IProduct";
+import { Milk } from "./products/Milk";
+import { PepsiSixPack } from "./products/PepsiSixPack";
 
 export class Basket {
   public discount: number;
@@ -104,5 +107,32 @@ export class Basket {
 
   public clone(): Basket {
     return new Basket([...this.items], this.discount);
+  }
+
+  public serialize(): string {
+    return JSON.stringify(this);
+  }
+
+  public static deserialize(json: string): Basket {
+    const basket = JSON.parse(json);
+    const basketItems = basket.items.map((bi: {
+      product: IProduct & {
+        _name: string;
+      };
+      quantity: number;
+    }) => {
+      switch (bi.product._name) {
+        case 'Milk':
+          return new Milk().intoBasketItem(bi.quantity);
+        case 'Bread':
+          return new Bread().intoBasketItem(bi.quantity);
+        case 'Pepsi Six Pack':
+          return new PepsiSixPack().intoBasketItem(bi.quantity);
+        default:
+          throw new Error("Unhandled product name found " + bi.product.name);
+      }
+    });
+
+    return new Basket(basketItems, basket.discount);
   }
 }
