@@ -7,6 +7,8 @@ import type { BasketItem } from '../model/BasketItem';
 export type BasketContextValue = {
     basket: Basket;
     addToBasket(bi: BasketItem): void;
+    removeOneFromBasket(bi: BasketItem): void;
+    removeProductFromBasket(bi: BasketItem): void;
 }
 
 export const BasketContext = createContext<BasketContextValue>({} as BasketContextValue);
@@ -21,7 +23,37 @@ export function BasketContextProvider(props: { children: JSX.Element }): JSX.Ele
 
     const addToBasket = (bi: BasketItem) => {
         const next = basket.clone();
-        next.addItem(bi);
+        const productExistence = next.items.find(
+            (item) => item.product.upc === bi.product.upc
+          );
+          if (productExistence) {
+            productExistence.quantity = productExistence.quantity + 1;
+          } else {
+            next.addItem(bi);
+          }
+        setBasket(next);
+
+        localStorage.setItem('basket', next.serialize());
+    }
+
+    const removeOneFromBasket = (bi: BasketItem) => {
+        const next = basket.clone();
+        next.removeOneItem(bi);
+        setBasket(next);
+
+        localStorage.setItem('basket', next.serialize());
+    }
+
+    const removeProductFromBasket = (bi: BasketItem) => {
+        const next = basket.clone();
+        const productExistence = next.items.find(
+            (item) => item.product.upc === bi.product.upc
+          );
+          if (productExistence && productExistence.quantity - 1 > 0) {
+            productExistence.quantity = productExistence.quantity - bi.quantity;
+          } else {
+            next.addItem(bi);
+          }
         setBasket(next);
 
         localStorage.setItem('basket', next.serialize());
@@ -31,6 +63,8 @@ export function BasketContextProvider(props: { children: JSX.Element }): JSX.Ele
         <BasketContext.Provider value={{
             basket,
             addToBasket,
+            removeOneFromBasket,
+            removeProductFromBasket
         }}>
             {props.children}
         </BasketContext.Provider>
