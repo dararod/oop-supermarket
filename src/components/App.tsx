@@ -14,8 +14,9 @@ export const App = () => {
       <Header />
       <section className="p-4 flex">
         {
-          CATALOG.map((product) => (
-            <Product 
+          CATALOG.map((product, idx) => (
+            <Product
+              key={`${product.upc}-${idx}`}
               product={product}
             />
           ))
