@@ -58,39 +58,39 @@ export class Basket {
     }
   }
 
-  public removeProduct(product: IProduct, quantity: number) {
+  public removeOneItem(bi: BasketItem) {
     console.info(
       "\x1b[41m",
       "\x1b[30m",
       "REMOVES",
       "\x1b[0m",
-      product.toString(),
-      quantity
+      bi.product.toString(),
+      bi.quantity
     );
     let items = this.items;
 
     const productExistence = items.find(
-      (item) => item.product.upc === product.upc
+      (item) => item.product.upc === bi.product.upc
     );
 
     if (productExistence) {
-      if (productExistence.quantity - quantity > 0) {
-        productExistence.quantity = productExistence.quantity - quantity;
-      } else if (productExistence.quantity - quantity === 0) {
-        this.removeItem(product.upc)
+      if (productExistence.quantity - 1 > 0) {
+        productExistence.quantity = productExistence.quantity - 1;
+      } else if (productExistence.quantity - bi.quantity === 0) {
+        this.removeItem(bi.product.upc)
       }
     } else {
-      // Product to remove not found
+      throw new Error("Product to remove not found");
     }
   }
 
-  public totalBasket(): number {
+  public totalBasket(): string {
     let total: number = 0;
     this.items.map((item) => {
       total = total + item.priceItem()
     });
 
-    return total;
+    return total.toFixed(2);
   }
 
   public print(): void {
