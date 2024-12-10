@@ -10,7 +10,7 @@ export const Header = () => {
       <div className="flex items-center gap-2">
         <a href="/basket" className="text-white font-semibold">Carrito</a>
       <div className="bg-red-700 text-white py-1 px-3 rounded font-semibold">
-        <span>${basket.totalBasket()}</span>
+        <span>${basket.totalBasketFixed()}</span>
       </div>
       </div>
     </header>
