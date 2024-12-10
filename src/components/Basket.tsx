@@ -1,5 +1,6 @@
 import { Header } from "./Header";
 import { useBasket } from "../hooks/use-basket";
+import { BasketItem } from "../model/BasketItem";
 
 export const Basket = () => {
   const { basket, addToBasket, removeOneFromBasket, removeProductFromBasket } =
@@ -27,7 +28,7 @@ export const Basket = () => {
                 </button>
                 <span>{item.quantity}</span>
                 <button
-                  onClick={() => addToBasket(item)}
+                  onClick={() => addToBasket(new BasketItem(item.product, 1))}
                   className="px-1 bg-zinc-300/50 border border-zinc-500 rounded"
                 >
                   +

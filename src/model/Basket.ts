@@ -84,13 +84,17 @@ export class Basket {
     }
   }
 
-  public totalBasket(): string {
+  public totalBasket(): number {
     let total: number = 0;
     this.items.map((item) => {
       total = total + item.priceItem()
     });
 
-    return total.toFixed(2);
+    return total;
+  }
+
+  public totalBasketFixed(): number {
+    return parseFloat(this.totalBasket().toFixed(2));
   }
 
   public print(): void {

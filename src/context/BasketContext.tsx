@@ -33,7 +33,7 @@ export function BasketContextProvider(props: {
       (item) => item.product.upc === bi.product.upc
     );
     if (productExistence) {
-      productExistence.quantity = productExistence.quantity + 1;
+      productExistence.quantity = productExistence.quantity + bi.quantity;
     } else {
       next.addItem(bi);
     }
