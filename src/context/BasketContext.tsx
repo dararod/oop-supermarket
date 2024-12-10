@@ -15,10 +15,10 @@ export const BasketContext = createContext<BasketContextValue>(
   {} as BasketContextValue
 );
 
-const basketString = "basket"
+const basketKey = "basket"
 
 function loadLocalBasketOrDefault(): Basket {
-  const json = localStorage.getItem(basketString);
+  const json = localStorage.getItem(basketKey);
   return json ? Basket.deserialize(json) : Basket.empty();
 }
 
@@ -39,7 +39,7 @@ export function BasketContextProvider(props: {
     }
     setBasket(next);
 
-    localStorage.setItem(basketString, next.serialize());
+    localStorage.setItem(basketKey, next.serialize());
   };
 
   const removeOneFromBasket = (bi: BasketItem) => {
@@ -47,7 +47,7 @@ export function BasketContextProvider(props: {
     next.removeOneItem(bi);
     setBasket(next);
 
-    localStorage.setItem(basketString, next.serialize());
+    localStorage.setItem(basketKey, next.serialize());
   };
 
   const removeProductFromBasket = (upc: string) => {
@@ -55,7 +55,7 @@ export function BasketContextProvider(props: {
     next.removeItem(upc);
     setBasket(next);
 
-    localStorage.setItem(basketString, next.serialize());
+    localStorage.setItem(basketKey, next.serialize());
   };
 
   return (
